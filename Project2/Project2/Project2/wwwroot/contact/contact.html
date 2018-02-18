@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Contact</title>
+    <script src="../dist/js/bundle.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../portfolio/portfolio.html"><i class="fa fa-suitcase" aria-hidden="true"></i>Portfolio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="../resume/resume.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="contact.html"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class="bg-dark text-info">
+        <h4 class="bg-dark text-info"  >Please contact via form below:</h4>
+        <form action="success.html">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="validationDefault01">Email</label>
+                    <input type="email" class="form-control" id="validationDefault01" placeholder="Email" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName4">Name</label>
+                    <input type="text" class="form-control" id="validationDefault02" placeholder="Name" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputReason">Reason for Contacting</label>
+                    <select id="validationDefault05" class="form-control" required>
+                        <option></option>
+                        <option>Offering job</option>
+                        <option>Requesting for collaboration</option>
+                        <option>General feedback about this website</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Question/Comment</label>
+                        <textarea class="form-control" id="validationDefault06" rows="3" required></textarea>
+                    </div>
+                    <small id="smallHelp" class="form-text text-muted">I'll keep your personal information secret.</small>
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+            </div>
+
+
+
+    </div>
+
+</body>
+</html>
