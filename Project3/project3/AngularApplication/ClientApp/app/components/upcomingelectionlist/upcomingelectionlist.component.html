@@ -1,0 +1,8 @@
+<div *ngIf="upcomingelection">
+    <p>Simply click on the election to see more details about it.</p>
+    <button (click)="navigateToUpcomingelectionDetails(upcomingelection.election, upcomingelection.normalizedInput)" class="btn btn-info">{{upcomingelection.election.name}} Date:{{upcomingelection.election.electionDay}}</button>
+    <p *ngFor="let election of upcomingelection.otherElections">
+        <button (click)="navigateToUpcomingelectionDetails(election, upcomingelection.normalizedInput)" class="btn btn-info">{{election.name}} Date:{{election.electionDay}}</button>
+    </p>
+   
+</div>

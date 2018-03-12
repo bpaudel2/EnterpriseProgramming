@@ -1,0 +1,6 @@
+<div *ngIf="representative">
+    <p>
+        Is this your correct address? If yes, please click on it to proceed.<br />
+        <button (click)="navigateToRepresentativeDetails(representative)" class="btn btn-info">{{representative.normalizedInput.line1}} {{representative.normalizedInput.city}} {{representative.normalizedInput.state}} {{representative.normalizedInput.zip}}</button>
+    </p>
+</div>

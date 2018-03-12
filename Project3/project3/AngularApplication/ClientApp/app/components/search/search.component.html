@@ -1,0 +1,58 @@
+<div class="p-3 mb-2 bg-dark text-white">
+    <h3>Hello, world!</h3>
+    <p>Welcome to our Awesome Voting Info Tool !</p>
+    <p>With the help of this app, you can do following:</p>
+    <ul>
+        <li>With the Search Button on NavBar (this page), you can search for upcoming elections or representative information based on your address.</li>
+        <li>If you click on any of those results returned from Search query performed in step 1, you will find more information about that particular result.</li>
+        <li>Clicking Election List button on NavBar will display all the election.</li>
+    </ul>
+    <p>We're heavily relying on data returned from Google Civic API. If something goes wrong, that is because of Google Civic API not functioning properly.<i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i> </p>
+
+    <h3>Search</h3>
+    <div>
+        <form #searchForm="ngForm" (ngSubmit)="search()">
+            <div class="form-group">
+                <input type="text" size="35" [(ngModel)]="searchString" name="searchStringInput" #searchStringInput="ngModel" placeholder="Enter your address here" required />
+            </div>
+            <div class="alert alert-danger col-6" *ngIf="!searchStringInput.valid">
+                <small>
+                    You must specify a search string.
+                </small>
+            </div>
+            <div class="form-group">
+                <input type="radio" [(ngModel)]="choice" name="searchFor" #searchFor="ngModel" value="Upcoming Election" required>Upcoming Election
+                <input type="radio" [(ngModel)]="choice" name="searchFor" #searchFor="ngModel" value="Representative Info" required>Representative Info
+            </div>
+
+            <div class="alert alert-danger col-6" *ngIf="!searchFor.valid">
+                <small>
+                    You must chose a query type either Upcoming election or Representative Info.
+                </small>
+            </div>
+            <button type="submit" [disabled]="!searchForm.valid" class="btn btn-info">Search</button>
+        </form>
+    </div>
+    <br />
+    <div *ngIf="errorMessage">
+        <h3>Error occured while retrieving data from internal server</h3>
+        <p>The possible reasons:</p>
+        <ul>
+            <li>Input address is not complete. Please enter full address including street, city, state and zip.</li>
+            <li>There is no upcoming election in your area.</li>
+            <li>Internal server error (Google Civic).</li>
+        </ul>
+        <p>For all these above possible reason, there is only one solution. PLEASE REFRESH THE PAGE AND TRY AGAIN WITH COMPLETE ADDRESS.</p>
+    </div>
+    <div [ngSwitch]="choice">
+        <div *ngSwitchCase="'Representative Info'">
+            <addressbar [representative]="representative"></addressbar>
+
+        </div>
+        <div *ngSwitchCase="'Upcoming Election'">
+            <upcomingelectionlist [upcomingelection]="upcomingelection"></upcomingelectionlist>
+        </div>
+    </div>
+
+</div>
+

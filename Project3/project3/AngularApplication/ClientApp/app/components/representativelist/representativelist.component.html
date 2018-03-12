@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="p-3 mb-2 bg-dark text-dark">
+            <div *ngIf="errorMessage">
+                <h3>Error occured while getting representative list from server.</h3>
+                <p>Please refresh the page and try again.</p>
+            </div>
+            <div *ngIf="representative">
+                <div *ngFor="let official of representative.officials">
+                    <div class="card text-center align-middle" style="width: 23rem; align-content:center;">
+                        <p *ngIf="official.photoUrl">
+                            <img class="card-img-top" src="{{official.photoUrl}}" alt="Card image cap">
+                        </p>
+                        <div class="card-body">
+                            <h5 class="card-title">{{official.office}}</h5>
+                            <div class="card-text">
+                                <p>Name: {{official.name}}</p>
+                                <p>Party: {{official.party}}</p>
+                                <p *ngFor=" let address of official.address">Address: {{address.line1}} {{address.line2}} {{address.city}} {{address.state}} {{address.zip}}</p>
+
+                                <p *ngFor="let phone of official.phones"><i class="fa fa-phone" aria-hidden="true"></i>{{phone}}</p>
+
+                                <p *ngFor="let url of official.urls"><i class="fa fa-globe" aria-hidden="true"></i><a href="{{url}}">{{url}}</a></p>
+
+                                <div *ngFor="let channel of official.channels">
+                                    <div [ngSwitch]="channel.type">
+                                        <p *ngSwitchCase="'Facebook'"><a href="https://www.facebook.com/{{channel.id}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></p>
+                                        <p *ngSwitchCase="'Twitter'"><a href="https://www.twitter.com/{{channel.id}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
+                                        <p *ngSwitchCase="'YouTube'"><a href="https://www.youtube.com/{{channel.id}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            
+        </div>
+    </body>
+    </html>

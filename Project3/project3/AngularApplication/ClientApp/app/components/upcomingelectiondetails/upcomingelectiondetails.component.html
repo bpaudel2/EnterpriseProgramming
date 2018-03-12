@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="p-3 mb-2 bg-dark text-white">
+            <div *ngIf="errorMessage">
+                <h3>Error occured while getting upcoming election details from server.</h3>
+                <p>Please refresh the page and try again.</p>
+            </div>
+            <div *ngIf="upcomingelection">
+                <h3>{{upcomingelection.election.name}}  {{upcomingelection.election.electionDay}}</h3>
+                <h5>Polling location</h5>
+                <div *ngIf="upcomingelection.pollingLocations">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Location</th>
+                                <th scope="col">Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pollinglocation of upcomingelection.pollingLocations">
+                                <td><a href="https://www.google.com/maps/place/{{pollinglocation.address.line1}} {{pollinglocation.address.city}} {{pollinglocation.address.state}} {{pollinglocation.address.zip}}">{{pollinglocation.address.line1}} {{pollinglocation.address.city}} {{pollinglocation.address.state}} {{pollinglocation.address.zip}}</a></td>
+                                <td>{{pollinglocation.pollingHours}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="upcomingelection.earlyVoteSites">
+                    <h5>Early voting location</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Location</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let earlyvotesite of upcomingelection.earlyVoteSites">
+                                <td><a href="https://www.google.com/maps/place/{{earlyvotesite.address.line1}} {{earlyvotesite.address.line2}} {{earlyvotesite.address.line3}}{{earlyvotesite.address.city}} {{earlyvotesite.address.state}} {{earlyvotesite.address.zip}}">{{earlyvotesite.address.line1}} {{earlyvotesite.address.line2}} {{earlyvotesite.address.line3}}{{earlyvotesite.address.city}} {{earlyvotesite.address.state}} {{earlyvotesite.address.zip}}</a></td>
+                                <td>{{earlyvotesite.startDate}}</td>
+                                <td>{{earlyvotesite.endDate}}</td>
+                                <td>{{earlyvotesite.pollingHours}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="upcomingelection.contests">
+                    hellow
+                    <div *ngFor="let contest of upcomingelection.contests">
+                        <div *ngFor="let candidate of contest.candidates">
+                            <ol>
+                                <li>
+                                    <p>{{contest.office}}</p>
+                                    <p>{{candidate.name}}</p>
+                                    <p><a href="{{candidate.candidateUrl}}">{{candidate.candidateUrl}}</a></p>
+                                    <p>{{candidate.party}}</p>
+                                    <div *ngFor="let channel of candidate.channels">
+                                        <div [ngSwitch]="channel.type">
+                                            <p *ngSwitchCase="'Facebook'"><a href="https://www.facebook.com/{{channel.id}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchCase="'Twitter'"><a href="https://www.twitter.com/{{channel.id}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchCase="'YouTube'"><a href="https://www.youtube.com/{{channel.id}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchDefault></p>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            
+        </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div *ngIf="errorMessage">
+            <h3>Error occured while retrieving election list from server.</h3>
+            <p>Refresh the page and try again.</p>
+        </div>
+        <div class="p-3 mb-2 bg-dark text-white">
+            <h4 class="display-4">The Election List:</h4>
+            <ul class="elections">
+                <li *ngFor="let elections of election.elections">
+
+                    <span>Name: {{elections.name}}</span><span> Date: {{elections.electionDay}}</span>
+
+
+                </li>
+            </ul>
+
+        </div>
+            
+        </div>
+
+
+</body>
+</html>
