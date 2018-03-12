@@ -55,26 +55,27 @@
                     </table>
                 </div>
                 <div *ngIf="upcomingelection.contests">
-                    hellow
+                    <h5>Candidtes info</h5>
+
                     <div *ngFor="let contest of upcomingelection.contests">
                         <div *ngFor="let candidate of contest.candidates">
-                            <ol>
-                                <li>
-                                    <p>{{contest.office}}</p>
+                            <ul>
+                                <li><div class="card text-center align-middle text-dark" style="width: 23rem; align-content:center;">
+                                    <h5 class="card-title">{{contest.office}}</h5>
                                     <p>{{candidate.name}}</p>
                                     <p><a href="{{candidate.candidateUrl}}">{{candidate.candidateUrl}}</a></p>
                                     <p>{{candidate.party}}</p>
                                     <div *ngFor="let channel of candidate.channels">
                                         <div [ngSwitch]="channel.type">
-                                            <p *ngSwitchCase="'Facebook'"><a href="https://www.facebook.com/{{channel.id}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></p>
-                                            <p *ngSwitchCase="'Twitter'"><a href="https://www.twitter.com/{{channel.id}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
-                                            <p *ngSwitchCase="'YouTube'"><a href="https://www.youtube.com/{{channel.id}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchCase="'Facebook'"><a href="{{channel.id}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchCase="'Twitter'"><a href="{{channel.id}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
+                                            <p *ngSwitchCase="'YouTube'"><a href="{{channel.id}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></p>
                                             <p *ngSwitchDefault></p>
                                         </div>
-
+                                    </div>
                                     </div>
                                 </li>
-                            </ol>
+                            </ul>
                         </div>
                     </div>
                 </div>
