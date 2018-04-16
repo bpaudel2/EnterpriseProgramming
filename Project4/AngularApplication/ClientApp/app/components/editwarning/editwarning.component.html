@@ -1,0 +1,18 @@
+﻿<div *ngIf="warningtime">
+    <form #editwarningForm="ngForm" (ngSubmit)="updatewarning()">
+        <div class="form-group row">
+            <label for="inputwarning" class="col-sm-2 col-form-label">Day(s)</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" [(ngModel)]="day" name="userday" #userday="ngModel" required />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputwarning" class="col-sm-2 col-form-label">Hour(s)</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" [(ngModel)]="hour" name="userhour" #userhour="ngModel"required />
+            </div>
+        </div>
+        <button type="submit" [disabled]="!editwarningForm.valid" class="btn btn-info">Save</button>
+    </form>
+       
+</div>

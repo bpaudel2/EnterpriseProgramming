@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="p-3 mb-2 bg-dark text-info">
+
+        <h3>Create Todo</h3>
+        
+     <div>
+         <form #createtodoForm="ngForm" (ngSubmit)="createtodo()">
+             <div class="form-group row">
+                 <label for="inputtitle" class="col-sm-2 col-form-label">Title</label>
+                 <div class="col-sm-10">
+                     <input type="text" class="form-control" [(ngModel)]="title" name="todotitle" #todotitle="ngModel" placeholder="Enter Todo Title here" required />
+                 </div>
+             </div>
+             <div class="form-group row">
+                 <label for="inputdescription" class="col-sm-2 col-form-label">Description</label>
+                 <div class="col-sm-10">
+                     <input type="text" class="form-control" [(ngModel)]="description" name="tododescription" #tododescription="ngModel" placeholder="Enter Todo Description here" required />
+                 </div>
+             </div>
+             <div class="form-group row">
+                 <label for="inputduedate" class="col-sm-2 col-form-label">Due Date</label>
+                 <div class="col-sm-10">
+                     <input type="datetime-local" class="form-control" [(ngModel)]="date" name="duedate" #duedate="ngModel" placeholder="Enter due date here" required />
+                 </div>
+             </div>
+             <div class="form-group row">
+                 <label for="inputtags" class="col-sm-2 col-form-label">Tags</label>
+                 <div class="col-sm-10">
+                     <input type="text" class="form-control"[(ngModel)]="tags" name="usertags" #usertags="ngModel" placeholder="More than one tags can be entered separated with comma" required />
+                 </div>
+             </div>
+
+             <div class="form-group row">
+                 <label for="inputstate" class="col-sm-2 col-form-label">State</label>
+                 <div class="col-sm-10">
+                     <input type="radio" [(ngModel)]="state" name="todostate" #todostate="ngModel" value="active" required />Active
+                     <input type="radio" [(ngModel)]="state" name="todostate" #todostate="ngModel" value="completed" required />Complete
+                 </div>
+             </div>
+             <button type="submit" [disabled]="!createtodoForm.valid" class="btn btn-info">Create</button>
+        </form>
+     </div>
+     <br />
+     <div *ngIf="responseMessage" class="alert alert-success">
+         <h3>A new todo is created successfully.</h3>
+         <p>{{responserMessage}}</p>     
+     </div>
+     <div *ngIf="!responseMessage">
+         <h3>***All the fields are required***</h3>
+         <p>{{responseMessage}}</p>
+        
+         
+     </div>
+    
+
+    </div>
+
+
+
+</body>
+</html>

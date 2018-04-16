@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div *ngIf="errorMessage">
+            <h3>Error occured while retrieving todo list from server.</h3>
+            <p>Refresh the page and try again.</p>
+        </div>
+        <div>
+            <form #filtertodoForm="ngForm" (ngSubmit)="filtermode()">
+                <div class="row">
+                    <input class="col-md-5" type="text" [(ngModel)]="filterstring" name ="filter" #filter="ngModel" placeholder="More than one tag can be entered separated with comma" required>
+                    
+                    <button type="submit" [disabled]="!filtertodoForm.valid" class="btn btn-info">Filter</button>
+                </div>
+
+            </form>
+        </div>
+        <hr />
+        <div>
+            <form #sorttodoForm="ngForm" (ngSubmit)="sortmode()">
+                <div class="row">
+                    <label class="col-sm-1"for="inputSort">Criteria</label>
+                    <select class="col-sm-2" [(ngModel)]="sortingcriteria" name="sort" #sort="ngModel" required>
+                        <option>Alphabetically</option>
+                        <option>Due Date</option>
+                    </select>
+                    <label class="col-sm-1">Order</label>
+                    <select class="col-sm-2" [(ngModel)]="sortingorder" name="order" #order="ngModel" required>
+                        <option >ASC</option>
+                        <option>DSC</option>
+                    </select>
+                    <button type="submit" [disabled]="!sorttodoForm.valid" class="btn btn-info">Sort</button>
+                </div>
+                    
+            </form>
+            
+        </div>
+        <div *ngIf="todolist">
+            <div *ngIf="mode=='sort' && todolist">{{sorttodo(todolist)}}</div>
+            <div *ngIf="mode=='filter' && todolist">{{filtertodo(todolist)}}</div>
+            <h3 class="text-info">The list of active todo:</h3>
+
+            <div [ngSwitch]="mode">
+                <div *ngSwitchCase="'sort'">
+                    <div *ngIf="sortedtodolist">
+                        <div *ngFor="let todo of sortedtodolist">
+                            <div *ngIf="todo.state=='active' && warningtime">
+                                <div class="card bg-info text-dark">
+                                    <div class="card-body" [style.background-color]="getstyle(todo.date, warningtime[0].dayhour)">
+                                        <h5 class="card-title">{{todo.title}}</h5>
+                                        <h6 class="card-subtitle mb-2">{{getlocaltime(todo.date)}}</h6>
+                                        <p class="card-text">{{todo.description}}</p>
+                                        <p>Tags: {{todo.tags}}</p>
+                                        <div *ngIf="warningtime">
+                                            <p>Warning time: {{warningtime[0].dayhour}}</p>
+                                        </div>
+                                        <button (click)="editwindow(todo.id)" class="card-link">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+                    <div *ngSwitchCase="'filter'">
+                        <div *ngIf="filteredtodolist">
+                            <div *ngFor="let todo of filteredtodolist">
+                                <div *ngIf="todo.state=='active' && warningtime">
+                                    <div class="card bg-info text-dark">
+                                        <div class="card-body" [style.background-color]="getstyle(todo.date, warningtime[0].dayhour)">
+                                            <h5 class="card-title">{{todo.title}}</h5>
+                                            <h6 class="card-subtitle mb-2">{{getlocaltime(todo.date)}}</h6>
+                                            <p class="card-text">{{todo.description}}</p>
+                                            <p>Tags: {{todo.tags}}</p>
+                                            <div *ngIf="warningtime">
+                                                <p>Warning time: {{warningtime[0].dayhour}}</p>
+                                            </div>
+                                            <button (click)="editwindow(todo.id)" class="card-link">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div *ngSwitchCase="'normal'">
+                        <div *ngFor="let todo of todolist">
+                            <div *ngIf="todo.state=='active' && warningtime">
+                                <div class="card bg-info text-dark">
+                                    <div class="card-body" [style.background-color]="getstyle(todo.date, warningtime[0].dayhour)">
+                                        <h5 class="card-title">{{todo.title}}</h5>
+                                        <h6 class="card-subtitle mb-2">{{getlocaltime(todo.date)}}</h6>
+                                        <p class="card-text">{{todo.description}}</p>
+                                        <p>Tags: {{todo.tags}}</p>
+                                        <div *ngIf="warningtime">
+                                            <p>Warning time: {{warningtime[0].dayhour}}</p>
+                                        </div>
+                                        <button (click)="editwindow(todo.id)" class="card-link">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <br /><br />
+                <div *ngIf="editview">
+                    <edit-todo [todo]="todo"></edit-todo>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+</body>
+</html>
