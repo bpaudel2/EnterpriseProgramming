@@ -66,7 +66,7 @@ export class loginComponent {
 
     public redirecttotodo(): void {
         
-        this.router.navigate(['/todolist']);
+       this.router.navigate(['/todolist']);
     }
 
 
