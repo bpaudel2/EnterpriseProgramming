@@ -40,7 +40,7 @@
             <div *ngIf="errorcreatingwarning">
                 {{errorcreatingwarning}}
             </div>
-            <div *ngIf="warningtime || warning">
+            <div *ngIf="warningtime || errorcreatingwarning=='Response with status: 201 Created for URL: http://localhost:5000/api/warningtime/'">
                 {{redirecttotodo()}}
             </div>
 

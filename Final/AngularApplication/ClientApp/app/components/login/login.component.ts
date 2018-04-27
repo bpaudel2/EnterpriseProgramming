@@ -65,7 +65,8 @@ export class loginComponent {
     }
 
     public redirecttotodo(): void {
-        
+        console.log(this.warningtime);
+        console.log(this.warning);
        this.router.navigate(['/todolist']);
     }
 
