@@ -1,0 +1,47 @@
+﻿
+<div class="p-3 mb-2 bg-dark text-info">
+    <p>***All of the three fields are required.***</p>
+    <form #registerform="ngForm" (ngSubmit)="register()">
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" [(ngModel)]="email" name="useremail" #useremail="ngModel" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="username" name="userusername" #userusername="ngModel" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" [(ngModel)]="password" name="userpassword" #userpassword="ngModel" placeholder="Password" required>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" [disabled]="!registerform.valid" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </form>
+    <br />
+    <div *ngIf="responseMessageForCreatingUser">
+        <div *ngIf="!responseMessageForCreatingUser.succeeded">
+            <span class="alert alert-danger" *ngFor="let error of responseMessageForCreatingUser.errors">
+                {{error.description}}
+            </span>
+        </div>
+        <div *ngIf="responseMessageForCreatingUser.succeeded">
+            
+            <span class="alert alert-success">
+                You've successfully registered. You can login now.
+            </span>
+        </div>
+
+    </div>
+    
+</div>
